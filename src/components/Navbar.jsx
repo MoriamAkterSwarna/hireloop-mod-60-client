@@ -62,7 +62,7 @@ export default function Navbar() {
             {/* Auth Links */}
             <div className="flex items-center gap-4">
               <Link
-                href="/login"
+                href="/auth/signin"
                 className="text-sm font-medium text-violet-400 transition hover:text-violet-300"
               >
                 Sign In

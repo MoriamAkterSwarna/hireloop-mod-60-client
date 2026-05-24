@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Card, Button, Link, TextField, Label, InputGroup, Input, FieldError } from "@heroui/react";
-import { Eye, EyeSlash, Person, At, ShieldKeyhole } from "@gravity-ui/icons";
-import { signUp } from "@/lib/auth-client";
+import { Card, Button, Link, TextField, Label, InputGroup, Input } from "@heroui/react";
+import { Eye, EyeSlash, At, ShieldKeyhole } from "@gravity-ui/icons";
+import { signIn } from "@/lib/auth-client";
 
-export default function SignupPage() {
+export default function SigninPage() {
     // Form fields
-    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -19,7 +18,7 @@ export default function SignupPage() {
 
     const toggleVisibility = () => setIsVisible(!isVisible);
 
-    const handleSignup = async (e) => {
+    const handleSignin = async (e) => {
         e.preventDefault();
 
         setError("");
@@ -27,17 +26,16 @@ export default function SignupPage() {
         setIsLoading(true);
 
         try {
-            const { data, error: authError } = await signUp.email({
+            const { data, error: authError } = await signIn.email({
                 email,
                 password,
-                name,
+                callbackURL: "/" 
             });
 
             if (authError) {
-                setError(authError.message || "Something went wrong during signup.");
+                setError(authError.message || "Invalid email or password.");
             } else {
-                setSuccess("Account created successfully! Welcome.");
-                setName("");
+                setSuccess("Signed in successfully! Redirecting...");
                 setEmail("");
                 setPassword("");
             }
@@ -54,27 +52,12 @@ export default function SignupPage() {
 
                 {/* Header Container */}
                 <div className="flex flex-col items-center justify-center gap-1 pb-6 border-b border-zinc-100 dark:border-zinc-800 mb-6 text-center">
-                    <h1 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">Create an account</h1>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400">Fill in the fields below to get started</p>
+                    <h1 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">Welcome back</h1>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400">Enter your credentials to access your account</p>
                 </div>
 
                 {/* Form Body */}
-                <form onSubmit={handleSignup} className="flex flex-col gap-5">
-
-                    {/* Name Field */}
-                    <TextField isRequired name="name" className="flex flex-col gap-1.5">
-                        <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Name</Label>
-                        <InputGroup className="flex items-center gap-2 border border-zinc-200 dark:border-zinc-800 rounded-xl px-3 bg-zinc-50 dark:bg-zinc-900 focus-within:border-primary transition-colors">
-                            <Person className="text-zinc-400 pointer-events-none" size={16} />
-                            <Input
-                                type="text"
-                                placeholder="Enter your full name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                className="w-full bg-transparent py-2 text-sm outline-none border-none text-zinc-900 dark:text-zinc-100"
-                            />
-                        </InputGroup>
-                    </TextField>
+                <form onSubmit={handleSignin} className="flex flex-col gap-5">
 
                     {/* Email Field */}
                     <TextField isRequired name="email" type="email" className="flex flex-col gap-1.5">
@@ -97,7 +80,7 @@ export default function SignupPage() {
                             <ShieldKeyhole className="text-zinc-400 pointer-events-none" size={16} />
                             <Input
                                 type={isVisible ? "text" : "password"}
-                                placeholder="Choose a password"
+                                placeholder="Enter your password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 className="w-full bg-transparent py-2 text-sm outline-none border-none text-zinc-900 dark:text-zinc-100"
@@ -134,14 +117,14 @@ export default function SignupPage() {
                         isLoading={isLoading}
                         isDisabled={isLoading}
                     >
-                        Sign Up
+                        Sign In
                     </Button>
 
                     {/* Navigation Option */}
                     <div className="text-center pt-4 border-t border-zinc-100 dark:border-zinc-800 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                        Already have an account?{" "}
-                        <Link href="/auth/signin" className="font-medium cursor-pointer text-sm text-blue-600 dark:text-blue-400">
-                            Sign in instead
+                        New to HireLoop?{" "}
+                        <Link href="/auth/signup" className="font-medium cursor-pointer text-sm text-blue-600 dark:text-blue-400">
+                            Create an account
                         </Link>
                     </div>
 
