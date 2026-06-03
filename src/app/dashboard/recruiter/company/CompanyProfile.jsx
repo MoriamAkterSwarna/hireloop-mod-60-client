@@ -136,7 +136,7 @@ export default function CompanyProfile({ recruiter, recruiterCompany }) {
     };
 
     // --- SUB-VIEW 1: Empty Profile view state ---
-    if (!company && !isEditing) {
+    if (!company?._id && !isEditing) {
         return (
             <div className="max-w-2xl mx-auto my-12 bg-zinc-950 border border-zinc-900 rounded-xl p-8 text-center space-y-6">
                 <div className="w-16 h-16 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto border border-zinc-800">
