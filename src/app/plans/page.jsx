@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
 // Gravity UI Icons for a polished visual identity
@@ -166,8 +166,8 @@ const PricingPage = () => {
                         <button
                             onClick={() => setBillingTarget('seeker')}
                             className={`flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${billingTarget === 'seeker'
-                                    ? 'bg-zinc-800 text-white shadow-md border border-zinc-700/50'
-                                    : 'text-zinc-400 hover:text-zinc-200'
+                                ? 'bg-zinc-800 text-white shadow-md border border-zinc-700/50'
+                                : 'text-zinc-400 hover:text-zinc-200'
                                 }`}
                         >
                             <Person className="w-4 h-4" />
@@ -176,8 +176,8 @@ const PricingPage = () => {
                         <button
                             onClick={() => setBillingTarget('recruiter')}
                             className={`flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${billingTarget === 'recruiter'
-                                    ? 'bg-zinc-800 text-white shadow-md border border-zinc-700/50'
-                                    : 'text-zinc-400 hover:text-zinc-200'
+                                ? 'bg-zinc-800 text-white shadow-md border border-zinc-700/50'
+                                : 'text-zinc-400 hover:text-zinc-200'
                                 }`}
                         >
                             <Briefcase className="w-4 h-4" />
@@ -192,8 +192,8 @@ const PricingPage = () => {
                         <div
                             key={idx}
                             className={`relative bg-zinc-900 border rounded-2xl p-6 shadow-xl flex flex-col justify-between min-h-[480px] transition-all duration-300 hover:-translate-y-1 ${plan.popular
-                                    ? 'border-blue-500/80 ring-2 ring-blue-500/10'
-                                    : 'border-zinc-800 hover:border-zinc-700'
+                                ? 'border-blue-500/80 ring-2 ring-blue-500/10'
+                                : 'border-zinc-800 hover:border-zinc-700'
                                 }`}
                         >
                             {/* Popular Highlight Pill */}
@@ -238,15 +238,18 @@ const PricingPage = () => {
 
                             {/* Plan Action CTA Callout Anchor Point */}
                             <div className="mt-8">
-                                <Link
-                                    href="/auth/signup"
-                                    className={`block w-full text-center text-xs font-semibold px-4 py-3 rounded-xl transition duration-200 ${plan.popular
-                                            ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-900/20'
-                                            : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700/50'
-                                        }`}
-                                >
-                                    {plan.cta}
-                                </Link>
+                                <form action="/api/checkout_sessions" method="POST">
+                                    <section>
+                                        <button type="submit" role="link"
+                                            className={`block w-full text-center text-xs font-semibold px-4 py-3 rounded-xl transition duration-200 ${plan.popular
+                                                ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-900/20'
+                                                : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700/50'
+                                                }`}
+                                        >
+                                            Checkout
+                                        </button>
+                                    </section>
+                                </form>
                             </div>
                         </div>
                     ))}
