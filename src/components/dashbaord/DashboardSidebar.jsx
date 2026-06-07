@@ -35,7 +35,7 @@ export async function DashboardSidebar() {
   ];
 
   const adminNavItems = [
-    { icon: House, href: "/dashboard/admin", label: "Dashboard" },
+    { icon: House, href: "/dashboard/admin/stats", label: "Statistics" },
     { icon: Magnifier, href: "/dashboard/admin/jobs", label: "Jobs" },
     { icon: Person, href: "/dashboard/admin/users", label: "Users" },
     {
