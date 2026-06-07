@@ -21,3 +21,17 @@ export const serverMutation = async (path, data) => {
 
     return res.json();
 }
+
+export const serverUpdate = async (path, action) => {
+    const res = await fetch(`${baseUrl}${path} `, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    // handle 401, 404, 403
+
+    return res.json();
+}
