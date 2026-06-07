@@ -14,6 +14,8 @@ import {
 import { Button, Drawer } from "@heroui/react";
 import Link from "next/link";
 
+import { LayoutDashboard, Users, Building2, Briefcase as LucideBriefcase, CreditCard, Settings } from "lucide-react";
+
 export async function DashboardSidebar() {
   const session = await getUserSession();
   const user = session.user;
@@ -35,20 +37,12 @@ export async function DashboardSidebar() {
   ];
 
   const adminNavItems = [
-    { icon: House, href: "/dashboard/admin/stats", label: "Statistics" },
-    { icon: Magnifier, href: "/dashboard/admin/jobs", label: "Jobs" },
-    { icon: Person, href: "/dashboard/admin/users", label: "Users" },
-    {
-      icon: CircleDollar,
-      href: "/dashboard/admin/transactions",
-      label: "Transactions",
-    },
-    {
-      icon: SquareChartBar,
-      href: "/dashboard/admin/analytics",
-      label: "Analytics",
-    },
-    { icon: Gear, href: "/settings", label: "Settings" },
+    { icon: LayoutDashboard, href: "/dashboard/admin/stats", label: "Dashboard" },
+    { icon: Users, href: "/dashboard/admin/users", label: "Users" },
+    { icon: Building2, href: "/dashboard/admin/company", label: "Companies" },
+    { icon: LucideBriefcase, href: "/dashboard/admin/jobs", label: "Jobs" },
+    { icon: CreditCard, href: "/dashboard/admin/payments", label: "Payments" },
+    { icon: Settings, href: "/settings", label: "Settings" },
   ];
 
   const navContent = (
